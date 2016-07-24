@@ -19,6 +19,7 @@
 		DEC8235F1D44EA2C00B7EFC2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC8235E1D44EA2C00B7EFC2 /* SearchViewController.swift */; };
 		DEC823611D44EA3F00B7EFC2 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC823601D44EA3F00B7EFC2 /* BookmarkViewController.swift */; };
 		DEC823631D44EA5100B7EFC2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC823621D44EA5100B7EFC2 /* SettingsViewController.swift */; };
+		DEC823661D44F40000B7EFC2 /* Candy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC823651D44F40000B7EFC2 /* Candy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		DEC8235E1D44EA2C00B7EFC2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DEC823601D44EA3F00B7EFC2 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		DEC823621D44EA5100B7EFC2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		DEC823651D44F40000B7EFC2 /* Candy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candy.swift; sourceTree = "<group>"; };
 		DF1B3F1066E09A1F8656E42A /* Pods-SearcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearcherTests/Pods-SearcherTests.release.xcconfig"; sourceTree = "<group>"; };
 		E567840B2BC3F9A1A5A14B6A /* Pods_Searcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Searcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 		DEC823241D44CFE600B7EFC2 /* Searcher */ = {
 			isa = PBXGroup;
 			children = (
+				DEC823641D44F3DF00B7EFC2 /* Models */,
 				DEC823571D44E98100B7EFC2 /* ViewControllers */,
 				DEC823251D44CFE600B7EFC2 /* AppDelegate.swift */,
 				DEC8232B1D44CFE600B7EFC2 /* Main.storyboard */,
@@ -177,6 +180,14 @@
 				DEC823621D44EA5100B7EFC2 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DEC823641D44F3DF00B7EFC2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DEC823651D44F40000B7EFC2 /* Candy.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEC823261D44CFE600B7EFC2 /* AppDelegate.swift in Sources */,
+				DEC823661D44F40000B7EFC2 /* Candy.swift in Sources */,
 				DEC8235F1D44EA2C00B7EFC2 /* SearchViewController.swift in Sources */,
 				DEC823611D44EA3F00B7EFC2 /* BookmarkViewController.swift in Sources */,
 				DEC823631D44EA5100B7EFC2 /* SettingsViewController.swift in Sources */,

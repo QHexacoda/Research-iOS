@@ -8,8 +8,10 @@
 
 import UIKit
 
-class BookmarkViewController: UIViewController {
+class BookmarkViewController: UITableViewController {
 
+    // MARK: - Properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,9 +32,40 @@ class BookmarkViewController: UIViewController {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .ScaleAspectFit
         // 4
-        let image = UIImage(named: "Apple_Swift_Logo")
+        let image = UIImage(named: "Apple_Swift_Logo") // TODO: Change icon.
         imageView.image = image
         // 5
         navigationItem.titleView = imageView
     }
+    
+//    // MARK: - Table View
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return candies.count
+//    }
+//    
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+//        
+//        let candy = candies[indexPath.row]
+//        cell.textLabel!.text = candy.name
+//        cell.detailTextLabel!.text = candy.category
+//        return cell
+//    }
+//    
+//    // MARK: - Segues
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "showDetail" {
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                let candy = candies[indexPath.row]
+//                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+//                controller.detailCandy = candy
+//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+//                controller.navigationItem.leftItemsSupplementBackButton = true
+//            }
+//        }
+//    }
 }
