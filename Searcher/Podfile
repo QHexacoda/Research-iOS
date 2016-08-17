@@ -7,7 +7,6 @@ target 'Searcher' do
 
   # Pods for Searcher
   pod 'RealmSwift'
-  pod 'SwiftyJSON'
 
   target 'SearcherTests' do
     inherit! :search_paths

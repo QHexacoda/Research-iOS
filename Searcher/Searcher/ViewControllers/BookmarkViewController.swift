@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookmarkViewController: UITableViewController {
+class BookmarkViewController: UIViewController {
 
     // MARK: - Properties
     
