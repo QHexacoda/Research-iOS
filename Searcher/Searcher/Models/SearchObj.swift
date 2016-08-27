@@ -44,7 +44,7 @@ class SearchObj: Object {
     dynamic var affiliate = ""
     dynamic var site_name = ""
     dynamic var digital_file = ""
-    dynamic var bookmarked = false
+    dynamic var bookmarked = ""
     let keyword = List<KeywordObj>()
     
     override static func primaryKey() -> String? {

@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Search Feed-->
+        <!--ค้นหางานวิจัย-->
         <scene sceneID="gRI-we-v0p">
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="EGw-qf-VZk" customClass="SearchViewController" customModule="Searcher" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,10 +41,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_nav_search" translatesAutoresizingMaskIntoConstraints="NO" id="ddK-2u-fK1">
-                                        <rect key="frame" x="15" y="32" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="32" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="TWN-E3-4ci"/>
-                                            <constraint firstAttribute="height" constant="50" id="nri-Ui-i4z"/>
+                                            <constraint firstAttribute="width" constant="40" id="TWN-E3-4ci"/>
+                                            <constraint firstAttribute="height" constant="40" id="nri-Ui-i4z"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ค้นหางานวิจัย" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvC-2Z-fWC">
@@ -56,12 +56,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.36470588235294116" green="0.67843137254901964" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ddK-2u-fK1" secondAttribute="bottom" constant="13" id="9XU-eY-7rj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ddK-2u-fK1" secondAttribute="bottom" constant="23" id="9XU-eY-7rj"/>
                                     <constraint firstItem="ddK-2u-fK1" firstAttribute="leading" secondItem="vDC-M9-MDt" secondAttribute="leading" constant="15" id="IC7-dj-2I6"/>
                                     <constraint firstItem="ddK-2u-fK1" firstAttribute="top" secondItem="vDC-M9-MDt" secondAttribute="top" constant="32" id="LSt-ky-doX"/>
                                     <constraint firstAttribute="height" constant="95" id="YmO-aH-Pqb"/>
                                     <constraint firstAttribute="bottom" secondItem="lvC-2Z-fWC" secondAttribute="bottom" constant="21" id="htf-28-obP"/>
-                                    <constraint firstItem="lvC-2Z-fWC" firstAttribute="leading" secondItem="ddK-2u-fK1" secondAttribute="trailing" constant="18" id="jYA-yI-DnO"/>
+                                    <constraint firstItem="lvC-2Z-fWC" firstAttribute="leading" secondItem="ddK-2u-fK1" secondAttribute="trailing" constant="28" id="jYA-yI-DnO"/>
                                     <constraint firstItem="lvC-2Z-fWC" firstAttribute="top" secondItem="vDC-M9-MDt" secondAttribute="top" constant="39" id="spk-1T-Pl2"/>
                                 </constraints>
                             </view>
@@ -69,7 +69,7 @@
                                 <rect key="frame" x="0.0" y="95" width="600" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_nav_search" translatesAutoresizingMaskIntoConstraints="NO" id="V7F-gE-f9k">
-                                        <rect key="frame" x="572" y="15" width="20" height="20"/>
+                                        <rect key="frame" x="565" y="15" width="20" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="FpA-v2-ZMi"/>
@@ -77,7 +77,7 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IsM-IM-ctX">
-                                        <rect key="frame" x="8" y="10" width="556" height="30"/>
+                                        <rect key="frame" x="15" y="10" width="535" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Us0-OS-spu"/>
                                         </constraints>
@@ -87,13 +87,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="V7F-gE-f9k" secondAttribute="trailing" constant="8" id="3SO-fn-UjB"/>
+                                    <constraint firstAttribute="trailing" secondItem="V7F-gE-f9k" secondAttribute="trailing" constant="15" id="3SO-fn-UjB"/>
                                     <constraint firstItem="V7F-gE-f9k" firstAttribute="top" secondItem="GcC-2g-W0Y" secondAttribute="top" constant="15" id="3WO-wQ-hyP"/>
                                     <constraint firstAttribute="bottom" secondItem="IsM-IM-ctX" secondAttribute="bottom" constant="10" id="f7O-vR-DAI"/>
-                                    <constraint firstItem="V7F-gE-f9k" firstAttribute="leading" secondItem="IsM-IM-ctX" secondAttribute="trailing" constant="8" id="jyq-Rf-QaQ"/>
+                                    <constraint firstItem="V7F-gE-f9k" firstAttribute="leading" secondItem="IsM-IM-ctX" secondAttribute="trailing" constant="15" id="jyq-Rf-QaQ"/>
                                     <constraint firstAttribute="height" constant="50" id="l3T-gt-L78"/>
                                     <constraint firstAttribute="bottom" secondItem="V7F-gE-f9k" secondAttribute="bottom" constant="15" id="pxd-3o-LfB"/>
-                                    <constraint firstItem="IsM-IM-ctX" firstAttribute="leading" secondItem="GcC-2g-W0Y" secondAttribute="leading" constant="8" id="qtg-w8-0BQ"/>
+                                    <constraint firstItem="IsM-IM-ctX" firstAttribute="leading" secondItem="GcC-2g-W0Y" secondAttribute="leading" constant="15" id="qtg-w8-0BQ"/>
                                     <constraint firstItem="IsM-IM-ctX" firstAttribute="top" secondItem="GcC-2g-W0Y" secondAttribute="top" constant="10" id="sBF-u0-VZm"/>
                                 </constraints>
                             </view>
@@ -261,7 +261,7 @@
                             <constraint firstAttribute="trailing" secondItem="GcC-2g-W0Y" secondAttribute="trailing" id="xKy-w7-gnl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search Feed" id="I0D-n0-meD"/>
+                    <tabBarItem key="tabBarItem" title="ค้นหางานวิจัย" image="tab_search" id="I0D-n0-meD"/>
                     <connections>
                         <outlet property="searchBarIcon" destination="V7F-gE-f9k" id="8Ts-TM-cdA"/>
                         <outlet property="searchTextField" destination="IsM-IM-ctX" id="15g-jC-syS"/>
@@ -272,7 +272,7 @@
             </objects>
             <point key="canvasLocation" x="752" y="-345"/>
         </scene>
-        <!--Bookmark-->
+        <!--บุ๊คมาร์ค-->
         <scene sceneID="WTh-wy-7TH">
             <objects>
                 <viewController storyboardIdentifier="BookmarkViewController" id="ax7-jb-tmI" customClass="BookmarkViewController" customModule="Searcher" customModuleProvider="target" sceneMemberID="viewController">
@@ -307,12 +307,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmU-HV-pY1">
-                                                    <rect key="frame" x="16" y="73" width="569" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kyx-4U-osh">
                                                     <rect key="frame" x="389" y="106" width="45" height="45"/>
                                                     <constraints>
@@ -341,8 +335,8 @@
                                                     <state key="normal" image="open_btn"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="jB8-Ta-ff3"/>
                                                             <exclude reference="9A1-ww-6B7"/>
+                                                            <exclude reference="jB8-Ta-ff3"/>
                                                         </mask>
                                                     </variation>
                                                     <connections>
@@ -352,6 +346,12 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เปิด" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Crd-2S-ilg">
                                                     <rect key="frame" x="565" y="118" width="20" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmU-HV-pY1">
+                                                    <rect key="frame" x="16" y="73" width="569" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -401,22 +401,22 @@
                                                 <mask key="constraints">
                                                     <exclude reference="O85-ff-s2s"/>
                                                     <exclude reference="cld-DQ-Al5"/>
-                                                    <exclude reference="kwT-FZ-ith"/>
-                                                    <exclude reference="oOx-UK-KeV"/>
                                                     <exclude reference="Ed5-hr-hEX"/>
                                                     <exclude reference="Thp-ma-IZG"/>
-                                                    <exclude reference="zEs-PS-gm2"/>
-                                                    <exclude reference="qba-sv-NrQ"/>
-                                                    <exclude reference="7HC-k0-kP1"/>
+                                                    <exclude reference="kwT-FZ-ith"/>
+                                                    <exclude reference="oOx-UK-KeV"/>
                                                     <exclude reference="05c-zt-fKT"/>
+                                                    <exclude reference="7HC-k0-kP1"/>
                                                     <exclude reference="b5X-dk-zRo"/>
-                                                    <exclude reference="srd-l4-1Dc"/>
-                                                    <exclude reference="efI-3R-9wt"/>
+                                                    <exclude reference="qba-sv-NrQ"/>
+                                                    <exclude reference="zEs-PS-gm2"/>
                                                     <exclude reference="60X-cK-YpH"/>
-                                                    <exclude reference="tea-PU-Sae"/>
+                                                    <exclude reference="7ca-gM-4Zm"/>
                                                     <exclude reference="Ezu-4c-uC5"/>
                                                     <exclude reference="aCa-4U-Cz0"/>
-                                                    <exclude reference="7ca-gM-4Zm"/>
+                                                    <exclude reference="efI-3R-9wt"/>
+                                                    <exclude reference="srd-l4-1Dc"/>
+                                                    <exclude reference="tea-PU-Sae"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -435,10 +435,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_nav_bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="yq2-Ml-u1F">
-                                        <rect key="frame" x="15" y="32" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="32" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="Rpm-fL-Yxc"/>
-                                            <constraint firstAttribute="height" constant="50" id="TWH-0A-Jeb"/>
+                                            <constraint firstAttribute="width" constant="40" id="Rpm-fL-Yxc"/>
+                                            <constraint firstAttribute="height" constant="40" id="TWH-0A-Jeb"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="บุ๊คมาร์ค" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2h-3y-V3S">
@@ -450,12 +450,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.36470588240000001" green="0.67843137249999996" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Y2h-3y-V3S" firstAttribute="leading" secondItem="yq2-Ml-u1F" secondAttribute="trailing" constant="18" id="0mr-c9-iCu"/>
+                                    <constraint firstItem="Y2h-3y-V3S" firstAttribute="leading" secondItem="yq2-Ml-u1F" secondAttribute="trailing" constant="28" id="0mr-c9-iCu"/>
                                     <constraint firstItem="yq2-Ml-u1F" firstAttribute="leading" secondItem="x6X-UG-zM6" secondAttribute="leading" constant="15" id="6d5-Ni-T5L"/>
                                     <constraint firstAttribute="bottom" secondItem="Y2h-3y-V3S" secondAttribute="bottom" constant="21" id="7c0-aq-CMu"/>
                                     <constraint firstAttribute="width" constant="600" id="ZRo-rS-BAJ"/>
                                     <constraint firstItem="yq2-Ml-u1F" firstAttribute="top" secondItem="x6X-UG-zM6" secondAttribute="top" constant="32" id="dCU-FR-vIM"/>
-                                    <constraint firstAttribute="bottom" secondItem="yq2-Ml-u1F" secondAttribute="bottom" constant="13" id="eAY-zd-JCA"/>
+                                    <constraint firstAttribute="bottom" secondItem="yq2-Ml-u1F" secondAttribute="bottom" constant="23" id="eAY-zd-JCA"/>
                                     <constraint firstAttribute="height" constant="95" id="lod-Os-mj4"/>
                                     <constraint firstItem="Y2h-3y-V3S" firstAttribute="top" secondItem="x6X-UG-zM6" secondAttribute="top" constant="39" id="u3r-fn-neB"/>
                                 </constraints>
@@ -484,7 +484,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bookmark" id="G12-Wx-KIv"/>
+                    <tabBarItem key="tabBarItem" title="บุ๊คมาร์ค" image="tab_bookmark" id="G12-Wx-KIv"/>
                     <connections>
                         <outlet property="bookmarkTableView" destination="j2g-9Z-0rL" id="0mC-oM-o98"/>
                     </connections>
@@ -493,7 +493,7 @@
             </objects>
             <point key="canvasLocation" x="754" y="368"/>
         </scene>
-        <!--Settings-->
+        <!--ตั้งค่าการค้นหา-->
         <scene sceneID="XuN-AS-ISy">
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" id="bby-jo-Eel" customClass="SettingsViewController" customModule="Searcher" customModuleProvider="target" sceneMemberID="viewController">
@@ -509,10 +509,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_nav_setting" translatesAutoresizingMaskIntoConstraints="NO" id="J28-VP-TKt">
-                                        <rect key="frame" x="15" y="32" width="50" height="50"/>
+                                        <rect key="frame" x="15" y="32" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="AcP-p3-S75"/>
-                                            <constraint firstAttribute="width" constant="50" id="Mry-Zl-9Fo"/>
+                                            <constraint firstAttribute="height" constant="40" id="AcP-p3-S75"/>
+                                            <constraint firstAttribute="width" constant="40" id="Mry-Zl-9Fo"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="การตั้งค่าค้นหา" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGZ-pg-0Ov">
@@ -525,10 +525,10 @@
                                 <color key="backgroundColor" red="0.36470588240000001" green="0.67843137249999996" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="2g4-ZS-Y22"/>
-                                    <constraint firstAttribute="bottom" secondItem="J28-VP-TKt" secondAttribute="bottom" constant="13" id="Rl5-eK-T4b"/>
+                                    <constraint firstAttribute="bottom" secondItem="J28-VP-TKt" secondAttribute="bottom" constant="23" id="Rl5-eK-T4b"/>
                                     <constraint firstItem="J28-VP-TKt" firstAttribute="top" secondItem="WfN-MU-U4z" secondAttribute="top" constant="32" id="WLq-W5-j3w"/>
                                     <constraint firstItem="RGZ-pg-0Ov" firstAttribute="top" secondItem="WfN-MU-U4z" secondAttribute="top" constant="39" id="bSt-xj-Kxx"/>
-                                    <constraint firstItem="RGZ-pg-0Ov" firstAttribute="leading" secondItem="J28-VP-TKt" secondAttribute="trailing" constant="18" id="epn-MF-rAv"/>
+                                    <constraint firstItem="RGZ-pg-0Ov" firstAttribute="leading" secondItem="J28-VP-TKt" secondAttribute="trailing" constant="28" id="epn-MF-rAv"/>
                                     <constraint firstItem="J28-VP-TKt" firstAttribute="leading" secondItem="WfN-MU-U4z" secondAttribute="leading" constant="15" id="mbL-k9-coi"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="600" id="n8C-0g-KPQ"/>
                                     <constraint firstAttribute="height" constant="95" id="rQx-06-ESQ"/>
@@ -556,7 +556,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="5aQ-FT-4Et"/>
+                    <tabBarItem key="tabBarItem" title="ตั้งค่าการค้นหา" image="tab_setting" id="5aQ-FT-4Et"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvq-Iu-5He" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -570,5 +570,8 @@
         <image name="icon_nav_search" width="55" height="55"/>
         <image name="icon_nav_setting" width="55" height="52"/>
         <image name="open_btn" width="80" height="80"/>
+        <image name="tab_bookmark" width="22" height="22"/>
+        <image name="tab_search" width="21" height="22"/>
+        <image name="tab_setting" width="20" height="19"/>
     </resources>
 </document>

@@ -50,60 +50,59 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationBookmark(_:)), name:"NotificationIdentifierBookmark", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationOpen(_:)), name:"NotificationIdentifierOpenLink", object: nil)
         
-        /*
-        // Dumping data from JSON
-        if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                do {
-                    let jsonResult: NSArray = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSArray
-                    
-                    print("data amount : \(jsonResult.count) records");
-                    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-                    // Import many items in a background thread
-                    dispatch_async(queue) {
-                        // Get new realm and table since we are in a new thread
-                        let cachesDirectoryPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
-                        let cachesDirectoryURL = NSURL(fileURLWithPath: cachesDirectoryPath)
-                        let fileURL = cachesDirectoryURL.URLByAppendingPathComponent("Search.realm")
-                        let config = Realm.Configuration(fileURL: fileURL)
-                        let realm = try! Realm(configuration: config)
-                        
-                        // Start writing data to Realm
-                        realm.beginWrite()
-                        for index in 0...jsonResult.count-1 {
-                            let obj: NSDictionary = jsonResult.objectAtIndex(index) as! NSDictionary
-                            let searchObj = SearchObj()
-                            searchObj.objID = NSUUID().UUIDString
-                            searchObj.title = obj["title"] as! String
-                            searchObj.pubyear = obj["pubyear"] as! String
-                            searchObj.author = obj["author"] as! String
-                            searchObj.url = obj["url"] as! String
-                            searchObj.affiliate = obj["affiliate"] as! String
-                            searchObj.site_name = obj["site_name"] as! String
-                            searchObj.digital_file = obj["digital_file"] as! String
-                            searchObj.bookmarked = false
-                            
-                            let keywordArray = obj["keyword"] as! NSArray
-                            if (keywordArray.count > 0) {
-                                for keywordIndex in 0...keywordArray.count-1 {
-                                    
-                                    let keyword = keywordArray[keywordIndex] as! NSDictionary
-                                    let keywordObj = KeywordObj()
-                                    keywordObj.objID = NSUUID().UUIDString
-                                    keywordObj.word = keyword["word"] as! String
-                                    searchObj.keyword.append(keywordObj)
-                                }
-                            }
-                            
-                            realm.add(searchObj)
-                        }
-                        try! realm.commitWrite()
-                    }
-                } catch {}
-            } catch {}
-        }
-        */
+        
+//        // Dumping data from JSON
+//        if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json") {
+//            do {
+//                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+//                do {
+//                    let jsonResult: NSArray = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSArray
+//                    
+//                    print("data amount : \(jsonResult.count) records");
+//                    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+//                    // Import many items in a background thread
+//                    dispatch_async(queue) {
+//                        // Get new realm and table since we are in a new thread
+//                        let cachesDirectoryPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
+//                        let cachesDirectoryURL = NSURL(fileURLWithPath: cachesDirectoryPath)
+//                        let fileURL = cachesDirectoryURL.URLByAppendingPathComponent("Search.realm")
+//                        let config = Realm.Configuration(fileURL: fileURL)
+//                        let realm = try! Realm(configuration: config)
+//                        
+//                        // Start writing data to Realm
+//                        realm.beginWrite()
+//                        for index in 0...jsonResult.count-1 {
+//                            let obj: NSDictionary = jsonResult.objectAtIndex(index) as! NSDictionary
+//                            let searchObj = SearchObj()
+//                            searchObj.objID = NSUUID().UUIDString
+//                            searchObj.title = obj["title"] as! String
+//                            searchObj.pubyear = obj["pubyear"] as! String
+//                            searchObj.author = obj["author"] as! String
+//                            searchObj.url = obj["url"] as! String
+//                            searchObj.affiliate = obj["affiliate"] as! String
+//                            searchObj.site_name = obj["site_name"] as! String
+//                            searchObj.digital_file = obj["digital_file"] as! String
+//                            searchObj.bookmarked = "0"
+//                            
+//                            let keywordArray = obj["keyword"] as! NSArray
+//                            if (keywordArray.count > 0) {
+//                                for keywordIndex in 0...keywordArray.count-1 {
+//                                    
+//                                    let keyword = keywordArray[keywordIndex] as! NSDictionary
+//                                    let keywordObj = KeywordObj()
+//                                    keywordObj.objID = NSUUID().UUIDString
+//                                    keywordObj.word = keyword["word"] as! String
+//                                    searchObj.keyword.append(keywordObj)
+//                                }
+//                            }
+//                            
+//                            realm.add(searchObj)
+//                        }
+//                        try! realm.commitWrite()
+//                    }
+//                } catch {}
+//            } catch {}
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -131,6 +130,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.titleLb?.text = search.title
         cell.authorLb?.text = search.author
         cell.publishDateLb.text = search.pubyear
+        cell.searchObj = search
         return cell
     }
     
@@ -201,12 +201,29 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func methodOfReceivedNotificationBookmark(notification: NSNotification){
         //Take Action on Notification
         print("bookmark tapped")
+        let searchNotificationObj = notification.object as! SearchObj
+        if (searchNotificationObj.bookmarked == "1")
+        {
+            try! Utillities.sharedInstance.realm.write {
+                searchNotificationObj.setValue("0", forKey: "bookmarked")
+                print("bookmark removed %@", searchNotificationObj)
+            }
+        }
+        else
+        {
+            try! Utillities.sharedInstance.realm.write {
+                searchNotificationObj.setValue("1", forKey: "bookmarked")
+                print("bookmark added %@", searchNotificationObj)
+            }
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierReload", object:nil)
     }
     
     func methodOfReceivedNotificationOpen(notification: NSNotification){
         //Take Action on Notification
         print("open tapped")
-        if let checkURL = NSURL(string: "http://www.google.com") {
+        let searchNotificationObj = notification.object as! SearchObj
+        if let checkURL = NSURL(string: searchNotificationObj.url) {
             if UIApplication.sharedApplication().openURL(checkURL) {
                 print("url successfully opened")
             }

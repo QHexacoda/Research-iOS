@@ -15,6 +15,8 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var publishDateLb: UILabel!
     @IBOutlet weak var bookmarkBtn: UIButton!
     @IBOutlet weak var openBtn: UIButton!
+    var searchObj = SearchObj()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,10 +26,10 @@ class SearchCell: UITableViewCell {
     }
     
     @IBAction func bookmarkTapped(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierBookmark", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierBookmark", object: self.searchObj)
     }
     
     @IBAction func openTapped(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierOpenLink", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierOpenLink", object: self.searchObj)
     }
 }

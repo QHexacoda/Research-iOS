@@ -20,9 +20,14 @@ class BookmarkViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view, typically from a nib.
         bookmarkTableView.delegate = self
         bookmarkTableView.dataSource = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BookmarkViewController.methodOfReceivedNotificationReload(_:)), name:"NotificationIdentifierReload", object: nil)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         // Fetch data
         self.fetchBookmarks()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +54,7 @@ class BookmarkViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.titleLb?.text = search.title
         cell.authorLb?.text = search.author
         cell.publishDateLb.text = search.pubyear
+        cell.searchObj = search
         return cell
     }
     
@@ -75,7 +81,8 @@ class BookmarkViewController: UIViewController, UITableViewDataSource, UITableVi
         filteredData.removeAll()
         
         // Query using an NSPredicate
-        let predicate = NSPredicate(format: "bookmarked == true")
+        let searchText = "1"
+        let predicate = NSPredicate(format: "bookmarked BEGINSWITH %@", searchText)
         let searchResults = Utillities.sharedInstance.realm.objects(SearchObj).filter(predicate)
         for searchObj in searchResults
         {
@@ -83,5 +90,11 @@ class BookmarkViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         bookmarkTableView.reloadData()
+    }
+    
+    func methodOfReceivedNotificationReload(notification: NSNotification){
+        //Take Action on Notification
+        print("Reload")
+        self.fetchBookmarks()
     }
 }
