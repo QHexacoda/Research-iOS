@@ -8,26 +8,14 @@
 
 import UIKit
 import RealmSwift
-//import SearchObj
-//import KeywordObj
 
-//class Dog: Object {
-//    dynamic var name = ""
-//    dynamic var age = 0
-//}
-//
-//class Person: Object {
-//    dynamic var name = ""
-//    let dogs = List<Dog>()
-//}
-
-
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBarIcon: UIImageView!
     
     var candies = [
         Candy(category:"Chocolate", name:"Chocolate Bar"),
@@ -42,23 +30,26 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     ]
     
     var filteredCandies = [Candy]()
+    var filteredData = [SearchObj]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
         tableView.delegate = self
         tableView.dataSource = self
+        searchTextField.delegate = self
         
         self.navigationItem.title = "Search Feed"
 
         var image = UIImage(named: "icon_nav_search")
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-
+        
+        // Add Observer
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationBookmark(_:)), name:"NotificationIdentifierBookmark", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationOpen(_:)), name:"NotificationIdentifierOpenLink", object: nil)
+        
         /*
         // Dumping data from JSON
         if let path = NSBundle.mainBundle().pathForResource("data", ofType: "json") {
@@ -91,6 +82,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             searchObj.affiliate = obj["affiliate"] as! String
                             searchObj.site_name = obj["site_name"] as! String
                             searchObj.digital_file = obj["digital_file"] as! String
+                            searchObj.bookmarked = false
                             
                             let keywordArray = obj["keyword"] as! NSArray
                             if (keywordArray.count > 0) {
@@ -112,28 +104,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } catch {}
         }
         */
-
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        NSNotificationCenter.defaultCenter().removeObserver(self) // Remove from all notifications being observed
     }
     
     override func viewDidAppear(animated: Bool) {
-//        // 1
-//        let nav = self.navigationController?.navigationBar
-//        // 2
-//        nav?.barStyle = UIBarStyle.Black
-//        nav?.tintColor = UIColor.yellowColor()
-//        // 3
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-//        imageView.contentMode = .ScaleAspectFit
-//        // 4
-//        let image = UIImage(named: "icon_nav_search") // TODO: Change icon.
-//        imageView.image = image
-//        // 5
-//        navigationItem.titleView = imageView
+
     }
     
     // MARK: - Table View
@@ -142,27 +122,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != ""
-        {
-            return filteredCandies.count
-        }
-        return candies.count
+        return filteredData.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let candy: Candy
-        if searchController.active && searchController.searchBar.text != ""
-        {
-            candy = filteredCandies[indexPath.row]
-        }
-        else
-        {
-            candy = candies[indexPath.row]
-        }
-        cell.textLabel?.text = candy.name
-        cell.detailTextLabel?.text = candy.category
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SearchCell
+        let search = filteredData[indexPath.row] as SearchObj!
+        cell.titleLb?.text = search.title
+        cell.authorLb?.text = search.author
+        cell.publishDateLb.text = search.pubyear
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 160.0
     }
     
     // MARK: - Segues
@@ -179,35 +152,66 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // MARK: - Helper Methods
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredCandies = candies.filter { candy in
-            return candy.name.lowercaseString.containsString(searchText.lowercaseString)
+    func filterContentForSearchText(searchText: String) {
+        
+        filteredData.removeAll()
+        
+        // Query using an NSPredicate
+        let predicate = NSPredicate(format: "word BEGINSWITH %@", searchText)
+        let searchResults = Utillities.sharedInstance.realm.objects(KeywordObj).filter(predicate)
+        for keyword in searchResults
+        {
+            let searchObj : SearchObj = keyword.search[0] as SearchObj
+            filteredData.append(searchObj)
         }
         
         tableView.reloadData()
     }
     
+    // UITextField Delegates
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("TextField did begin editing method called")
+    }
+    func textFieldDidEndEditing(textField: UITextField) {
+        print("TextField did end editing method called")
+        filterContentForSearchText(textField.text!)
+    }
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        print("TextField should begin editing method called")
+        return true;
+    }
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        print("TextField should clear method called")
+        return true;
+    }
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        print("TextField should snd editing method called")
+        return true;
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        print("While entering the characters this method gets called")
+        return true;
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("TextField should return method called")
+        textField.resignFirstResponder();
+        return true;
+    }
     
-    func backgroundAdd() {
-//        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-//        // Import many items in a background thread
-//        dispatch_async(queue) {
-//            // Get new realm and table since we are in a new thread
-//            let realm = try! Realm()
-//            realm.beginWrite()
-//            for _ in 0..<5 {
-//                // Add row via dictionary. Order is ignored.
-//                realm.create(DemoObject.self, value: ["title": TableViewController.randomString(), "date": TableViewController.randomDate()])
-//            }
-//            try! realm.commitWrite()
-//        }
+    func methodOfReceivedNotificationBookmark(notification: NSNotification){
+        //Take Action on Notification
+        print("bookmark tapped")
+    }
+    
+    func methodOfReceivedNotificationOpen(notification: NSNotification){
+        //Take Action on Notification
+        print("open tapped")
+        if let checkURL = NSURL(string: "http://www.google.com") {
+            if UIApplication.sharedApplication().openURL(checkURL) {
+                print("url successfully opened")
+            }
+        } else {
+            print("invalid url")
+        }
     }
 }
-
-extension SearchViewController: UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-}
-
-

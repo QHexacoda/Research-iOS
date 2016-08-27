@@ -14,6 +14,10 @@
 		DE4CF89D1D51314D00FB9992 /* CustomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4CF89C1D51314D00FB9992 /* CustomBar.swift */; };
 		DEB087301D5EB48D0053D722 /* SearchObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB0872F1D5EB48D0053D722 /* SearchObj.swift */; };
 		DEB087321D5EB63B0053D722 /* KeywordObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB087311D5EB63A0053D722 /* KeywordObj.swift */; };
+		DEB7E25F1D708E5A00ABCEBC /* Utillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7E25E1D708E5A00ABCEBC /* Utillities.swift */; };
+		DEB7E2611D70A5E700ABCEBC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7E2601D70A5E700ABCEBC /* CustomTextField.swift */; };
+		DEB7E2631D70C5CF00ABCEBC /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7E2621D70C5CF00ABCEBC /* SearchCell.swift */; };
+		DEB7E2651D71302D00ABCEBC /* SearchTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7E2641D71302D00ABCEBC /* SearchTabbarController.swift */; };
 		DEC823261D44CFE600B7EFC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC823251D44CFE600B7EFC2 /* AppDelegate.swift */; };
 		DEC8232D1D44CFE600B7EFC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEC8232B1D44CFE600B7EFC2 /* Main.storyboard */; };
 		DEC8232F1D44CFE600B7EFC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEC8232E1D44CFE600B7EFC2 /* Assets.xcassets */; };
@@ -55,6 +59,10 @@
 		DE4CF89C1D51314D00FB9992 /* CustomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBar.swift; sourceTree = "<group>"; };
 		DEB0872F1D5EB48D0053D722 /* SearchObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchObj.swift; sourceTree = "<group>"; };
 		DEB087311D5EB63A0053D722 /* KeywordObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordObj.swift; sourceTree = "<group>"; };
+		DEB7E25E1D708E5A00ABCEBC /* Utillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utillities.swift; sourceTree = "<group>"; };
+		DEB7E2601D70A5E700ABCEBC /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		DEB7E2621D70C5CF00ABCEBC /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		DEB7E2641D71302D00ABCEBC /* SearchTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTabbarController.swift; sourceTree = "<group>"; };
 		DEC823221D44CFE600B7EFC2 /* Searcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Searcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEC823251D44CFE600B7EFC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEC8232C1D44CFE600B7EFC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				DE4CF89C1D51314D00FB9992 /* CustomBar.swift */,
+				DEB7E2601D70A5E700ABCEBC /* CustomTextField.swift */,
+				DEB7E2621D70C5CF00ABCEBC /* SearchCell.swift */,
+				DEB7E2641D71302D00ABCEBC /* SearchTabbarController.swift */,
 			);
 			path = Customs;
 			sourceTree = "<group>";
@@ -140,6 +151,14 @@
 				DE2E394D1D63FF9400A118FB /* data.json */,
 			);
 			path = ExternalFiles;
+			sourceTree = "<group>";
+		};
+		DEB7E25D1D708DEF00ABCEBC /* Utillities */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7E25E1D708E5A00ABCEBC /* Utillities.swift */,
+			);
+			path = Utillities;
 			sourceTree = "<group>";
 		};
 		DEC823191D44CFE600B7EFC2 = {
@@ -167,6 +186,7 @@
 		DEC823241D44CFE600B7EFC2 /* Searcher */ = {
 			isa = PBXGroup;
 			children = (
+				DEB7E25D1D708DEF00ABCEBC /* Utillities */,
 				DEB087331D5EB73E0053D722 /* ExternalFiles */,
 				DE4CF8971D512D6D00FB9992 /* Customs */,
 				DEC823641D44F3DF00B7EFC2 /* Models */,
@@ -482,12 +502,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE4CF89D1D51314D00FB9992 /* CustomBar.swift in Sources */,
+				DEB7E2631D70C5CF00ABCEBC /* SearchCell.swift in Sources */,
 				DEC823261D44CFE600B7EFC2 /* AppDelegate.swift in Sources */,
 				DEC823661D44F40000B7EFC2 /* Candy.swift in Sources */,
 				DEB087321D5EB63B0053D722 /* KeywordObj.swift in Sources */,
+				DEB7E2611D70A5E700ABCEBC /* CustomTextField.swift in Sources */,
 				DEC8235F1D44EA2C00B7EFC2 /* SearchViewController.swift in Sources */,
 				DEC823611D44EA3F00B7EFC2 /* BookmarkViewController.swift in Sources */,
 				DEC823631D44EA5100B7EFC2 /* SettingsViewController.swift in Sources */,
+				DEB7E2651D71302D00ABCEBC /* SearchTabbarController.swift in Sources */,
+				DEB7E25F1D708E5A00ABCEBC /* Utillities.swift in Sources */,
 				DEB087301D5EB48D0053D722 /* SearchObj.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
