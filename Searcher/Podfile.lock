@@ -1,4 +1,5 @@
 PODS:
+  - ARSLineProgress (1.2.1)
   - Realm (1.0.1):
     - Realm/Headers (= 1.0.1)
   - Realm/Headers (1.0.1)
@@ -6,12 +7,14 @@ PODS:
     - Realm (= 1.0.1)
 
 DEPENDENCIES:
+  - ARSLineProgress (~> 1.0)
   - RealmSwift
 
 SPEC CHECKSUMS:
+  ARSLineProgress: 6761482b13a0b0b8723fe25e0117cdc543f46ff8
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
 
-PODFILE CHECKSUM: f632bbb365069b5bf3fbc91287023f94c69aee8f
+PODFILE CHECKSUM: 4dbe1d90a8b00856c91cf6f651f8924408e9e44c
 
 COCOAPODS: 1.0.1

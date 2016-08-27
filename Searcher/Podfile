@@ -7,6 +7,7 @@ target 'Searcher' do
 
   # Pods for Searcher
   pod 'RealmSwift'
+  pod 'ARSLineProgress', '~> 1.0'
 
   target 'SearcherTests' do
     inherit! :search_paths

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ARSLineProgress
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
@@ -31,6 +32,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var filteredCandies = [Candy]()
     var filteredData = [SearchObj]()
+    
+    // Progress HUD
+    private var progress: CGFloat = 0.0
+    private var progressObject: NSProgress?
+    private var isSuccess: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,6 +213,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             try! Utillities.sharedInstance.realm.write {
                 searchNotificationObj.setValue("0", forKey: "bookmarked")
                 print("bookmark removed %@", searchNotificationObj)
+                self.showProgressLoaderWithSuccess()
             }
         }
         else
@@ -214,6 +221,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             try! Utillities.sharedInstance.realm.write {
                 searchNotificationObj.setValue("1", forKey: "bookmarked")
                 print("bookmark added %@", searchNotificationObj)
+                self.showProgressLoaderWithSuccess()
             }
         }
         NSNotificationCenter.defaultCenter().postNotificationName("NotificationIdentifierReload", object:nil)
@@ -230,5 +238,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             print("invalid url")
         }
+    }
+    
+    func showProgressLoaderWithSuccess() {
+        if ARSLineProgress.shown { return } // Return if have the hud shown
+        ARSLineProgress.showSuccess()
     }
 }
