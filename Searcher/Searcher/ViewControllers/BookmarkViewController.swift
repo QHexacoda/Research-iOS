@@ -51,15 +51,16 @@ class BookmarkViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SearchCell
         let search = filteredData[indexPath.row] as SearchObj!
-        cell.titleLb?.text = search.title
-        cell.authorLb?.text = search.author
-        cell.publishDateLb.text = search.pubyear
+        cell.titleLb?.text = String(format:"%@", search.title)
+        cell.authorLb?.text = String(format:"ผู้แต่ง : %@", search.author)
+        cell.sourceLb?.text = String(format:"แหล่งที่มา : %@", search.site_name.uppercaseString)
+        cell.publishDateLb.text = String(format:"ปีที่เผยแพร่ : %@", search.pubyear)
         cell.searchObj = search
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 160.0
+        return 190.0
     }
     
     // MARK: - Segues

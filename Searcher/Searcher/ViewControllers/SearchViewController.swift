@@ -47,7 +47,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTextField.delegate = self
         
         self.navigationItem.title = "Search Feed"
-
         var image = UIImage(named: "icon_nav_search")
         image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
@@ -55,6 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Add Observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationBookmark(_:)), name:"NotificationIdentifierBookmark", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationOpen(_:)), name:"NotificationIdentifierOpenLink", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.methodOfReceivedNotificationURLSource(_:)), name: "methodOfReceivedNotificationURLSource", object: nil)
         
         
 //        // Dumping data from JSON
@@ -63,7 +63,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
 //                do {
 //                    let jsonResult: NSArray = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSArray
-//                    
+//
 //                    print("data amount : \(jsonResult.count) records");
 //                    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 //                    // Import many items in a background thread
@@ -133,15 +133,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SearchCell
         let search = filteredData[indexPath.row] as SearchObj!
-        cell.titleLb?.text = search.title
-        cell.authorLb?.text = search.author
-        cell.publishDateLb.text = search.pubyear
+        cell.titleLb?.text = String(format:"%@", search.title)
+        cell.authorLb?.text = String(format:"ผู้แต่ง : %@", search.author)
+        cell.sourceLb?.text = String(format:"แหล่งที่มา : %@", search.site_name.uppercaseString)
+        cell.publishDateLb.text = String(format:"ปีที่เผยแพร่ : %@", search.pubyear)
         cell.searchObj = search
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 160.0
+        return 190.0
     }
     
     // MARK: - Segues
@@ -161,17 +162,56 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func filterContentForSearchText(searchText: String) {
         
         filteredData.removeAll()
-        
-        // Query using an NSPredicate
-        let predicate = NSPredicate(format: "word BEGINSWITH %@", searchText)
-        let searchResults = Utillities.sharedInstance.realm.objects(KeywordObj).filter(predicate)
-        for keyword in searchResults
+
+        if searchText == ""
         {
-            let searchObj : SearchObj = keyword.search[0] as SearchObj
-            filteredData.append(searchObj)
+            tableView.reloadData()
         }
-        
-        tableView.reloadData()
+        else
+        {
+            // Query using an NSPredicate
+            let predicate = NSPredicate(format: "word BEGINSWITH %@", searchText)
+            let searchResults = Utillities.sharedInstance.realm.objects(KeywordObj).filter(predicate)
+            
+            if (Utillities.sharedInstance.queryString1 != "" || Utillities.sharedInstance.queryString2 != "" || Utillities.sharedInstance.queryString3 != "" || Utillities.sharedInstance.queryString4 != "")
+            {
+//                let predicate2 = NSPredicate(format: "site_name == %@", Utillities.sharedInstance.queryString)
+//                let finalResults = searchResults.filter(predicate2)
+                for keyword in searchResults
+                {
+                    let searchObj : SearchObj = keyword.search[0] as SearchObj
+                    if (searchObj.site_name == Utillities.sharedInstance.queryString1)
+                    {
+                        filteredData.append(searchObj)
+                    }
+                    else if (searchObj.site_name == Utillities.sharedInstance.queryString2)
+                    {
+                        filteredData.append(searchObj)
+                    }
+                    else if (searchObj.site_name == Utillities.sharedInstance.queryString3)
+                    {
+                        filteredData.append(searchObj)
+                    }
+                    else if (searchObj.site_name == Utillities.sharedInstance.queryString4)
+                    {
+                        filteredData.append(searchObj)
+                    }
+                    else
+                    {
+                        // Do notthing
+                    }
+                }
+            }
+            else
+            {
+                for keyword in searchResults
+                {
+                    let searchObj : SearchObj = keyword.search[0] as SearchObj
+                    filteredData.append(searchObj)
+                }
+            }
+            tableView.reloadData()
+        }
     }
     
     // UITextField Delegates
@@ -238,6 +278,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             print("invalid url")
         }
+    }
+    
+    func methodOfReceivedNotificationURLSource(notification: NSNotification){
+        //Take Action on Notification
+        print("open tapped")
+//        self.queryString = notification.object as! String
     }
     
     func showProgressLoaderWithSuccess() {

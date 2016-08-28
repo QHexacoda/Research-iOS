@@ -10,6 +10,10 @@ import RealmSwift
 class Utillities {
     static let sharedInstance = Utillities()
     let realm : Realm
+    var queryString1:String!
+    var queryString2:String!
+    var queryString3:String!
+    var queryString4:String!
     
     private init() {
         // Get new realm and table since we are in a new thread

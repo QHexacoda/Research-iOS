@@ -12,6 +12,7 @@ class SearchCell: UITableViewCell {
     
     @IBOutlet weak var titleLb: UILabel!
     @IBOutlet weak var authorLb: UILabel!
+    @IBOutlet weak var sourceLb: UILabel!
     @IBOutlet weak var publishDateLb: UILabel!
     @IBOutlet weak var bookmarkBtn: UIButton!
     @IBOutlet weak var openBtn: UIButton!

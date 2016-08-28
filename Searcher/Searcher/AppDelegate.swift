@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // change navigation item title color
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.blackColor()]
+        Utillities.sharedInstance.queryString1 = "doi"
+        Utillities.sharedInstance.queryString2 = "dirc"
+        Utillities.sharedInstance.queryString3 = "thaiex"
+        Utillities.sharedInstance.queryString4 = "tnrr"
         return true
     }
 
